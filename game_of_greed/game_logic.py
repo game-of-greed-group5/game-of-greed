@@ -1,5 +1,8 @@
 from random import randint
 from collections import Counter
+"""
+
+"""
 class GameLogic:
     @staticmethod
     def calculate_score(num):
