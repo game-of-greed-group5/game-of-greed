@@ -1,9 +1,8 @@
-# Lab: 06 : Game of Greed 1
-
+# Game of Greed 1
 
 # Description
 
-A Python application using Object Oriented Programming.
+A Python application using Object Oriented Programming to create a rolling dice game.
 
 # Requirements
 
@@ -13,6 +12,8 @@ flake
 pytest
 
 # Feature Tasks
+
+Lab06:-
 
 [x] Define a GameLogic class in game_of_greed/game_logic.py file.
 
@@ -50,6 +51,22 @@ pytest
 
 [x] clear_shelf should remove all unbanked points.
 
+lab07:-
+
+[x] Application should implement all features from previous version
+
+[x] Application should simulate rolling between 1 and 6 dice
+
+[x] Application should allow user to set aside dice each roll
+
+[x] Application should allow “banking” current score or rolling again.
+
+[x] Application should keep track of total score
+
+[x] Application should keep track of current round
+
+[x] Application should have automated tests to ensure proper operation
+
 # Get Started
 
 ```
@@ -67,12 +84,12 @@ pytest
 
 Faisal Kushha,
 
-Mohammad Silwadi     , 
+Mohammad Silwadi ,
 
 Ehab Ahmad,
 
 Suzan Hiary.
 
+## [Pull Request Link: Lab06](https://github.com/game-of-greed-group5/game-of-greed/pull/1)
 
-##  [Pull Request Link](https://github.com/game-of-greed-group5/game-of-greed/pull/1)
-
+## [Pull Request Link: Lab07](https://github.com/game-of-greed-group5/game-of-greed/pull/2)
