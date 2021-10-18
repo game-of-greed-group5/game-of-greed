@@ -14,7 +14,7 @@ class GameLogic:
     def calculate_score(num):
         game_rules = {
         (1,1): 100,
-        (1, 2): 200,
+        (1,2): 200,
         (1, 3): 1000,
         (1, 4): 2000,
         (1, 5): 3000,
