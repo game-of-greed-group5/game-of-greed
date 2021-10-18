@@ -1,4 +1,4 @@
-# Game of Greed 1
+# Game of Greed
 
 # Description
 
