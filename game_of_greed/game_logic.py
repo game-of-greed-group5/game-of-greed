@@ -82,6 +82,25 @@ class GameLogic:
     def roll_dice(num_dice):
         return tuple(randint(1, 6) for _ in range(0, num_dice))
 
+    def get_scorers(test_input):
+        test_out = []
+        if GameLogic.calculate_score(test_input) == 0:
+            return tuple()
+        for i in test_input:
+            points = [i]
+            if GameLogic.calculate_score(tuple(points)) != 0:
+                test_out.append(i)
+        return tuple(test_out)
+
+    @staticmethod
+    def validate_keepers(roll, keepers):
+        res = set(keepers).issubset(roll)
+        if GameLogic.calculate_score(roll) < GameLogic.calculate_score(keepers):
+            x = False
+        else:
+            x = True
+        return res and x
+
 
 """
 Banker class Handle shelf, bank and clear_shelf instance method
