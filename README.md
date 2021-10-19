@@ -67,6 +67,19 @@ lab07:-
 
 [x] Application should have automated tests to ensure proper operation
 
+lab08:-
+[x] Application should implement features from versions 1 and 2
+
+[x] Should handle setting aside scoring dice and continuing turn with remaining dice.
+
+[x] Should handle when cheating occurs
+
+[x] Should allow user to continue rolling with 6 new dice when all dice have scored in current turn.
+
+[x] Handle zilch
+
+[x] If you have questions refer to game rules, the online game or ask the client (aka Instructor)
+
 # Get Started
 
 ```
@@ -93,3 +106,5 @@ Suzan Hiary.
 ## [Pull Request Link: Lab06](https://github.com/game-of-greed-group5/game-of-greed/pull/1)
 
 ## [Pull Request Link: Lab07](https://github.com/game-of-greed-group5/game-of-greed/pull/2)
+
+## [Pull Request Link: Lab08](https://github.com/game-of-greed-group5/game-of-greed/pull/3)
