@@ -55,23 +55,19 @@ class Game:
 
                 user_response = input('> ')
             if user_response == 'q' or self.count == 100:
-                print('Thanks for playing. You earned {} points'.format(self.bank))
                 break
 
             elif user_response != 'b':
 
                 f_res = 1
                 credit = list(user_response)
-                # for i in credit:
-                #     total.append(int(i))
+             
                 total = [int(char) for char in credit if char.isdigit()]
                 self.score = GameLogic.calculate_score(tuple(total))
                 self.result = GameLogic.calculate_score(tuple(total))
                 new_dice = dice - len(total)
                 self.count_number = total
-                # new_dice = dice-len(data)
-                # self.input_num = data
-                # roll = roller(dice)
+              
                 if GameLogic.validate_keepers(tuple(rolling), tuple(total)) == False:
                     print('Cheater!!! Or possibly made a typo...')
                     rolling = roller(dice)
