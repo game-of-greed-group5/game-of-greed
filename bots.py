@@ -138,7 +138,7 @@ class NervousNellie(BaseBot):
 class LazyBot(BaseBot):
     def _roll_bank_or_quit(self):
         """your logic here"""
-        if self.dice_remaining <= 2 :
+        if self.dice_remaining <= 4 :
             return 'b'
         else:
              return 'r'
@@ -148,7 +148,7 @@ class LazyBot(BaseBot):
         Defaults to all scoring dice"""
         if GameLogic.calculate_score(tuple(self.last_roll))>=0:
              return super()._enter_dice()
-        elif self.dice_remaining >= 3 :
+        elif self.dice_remaining >= 4:
             return super()._enter_dice()
         else :
             return 'q'         

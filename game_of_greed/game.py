@@ -55,6 +55,7 @@ class Game:
 
                 user_response = input('> ')
             if user_response == 'q' or self.count == 100:
+                print('Thanks for playing. You earned {} points'.format(self.bank))
                 break
 
             elif user_response != 'b':
