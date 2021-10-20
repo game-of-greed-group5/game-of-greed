@@ -80,6 +80,21 @@ lab08:-
 
 [x] If you have questions refer to game rules, the online game or ask the client (aka Instructor)
 
+
+lab09:-
+
+[x] Create an AI Bot to play Game of Greed
+
+[x] The only method available for use from Game class is play.
+
+[x] All static methods of GameLogic class are available.
+
+[x]All other interactions with game can take place ONLY via the I/O features of the game.
+
+[x] In other words, via injectable print and input functionality.
+
+[x] It is FORBIDDEN to inject a custom roller function into Game class.
+
 # Get Started
 
 ```
@@ -108,3 +123,5 @@ Suzan Hiary.
 ## [Pull Request Link: Lab07](https://github.com/game-of-greed-group5/game-of-greed/pull/2)
 
 ## [Pull Request Link: Lab08](https://github.com/game-of-greed-group5/game-of-greed/pull/3)
+
+## [Pull Request Link: Lab09](https://github.com/game-of-greed-group5/game-of-greed/pull/4)
