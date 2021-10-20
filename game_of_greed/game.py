@@ -35,7 +35,7 @@ class Game:
              If the user choose to play he will continue by choosing from the promoted numbers. After he get the result he could continue by roll again or go to bank and check his balance or quit the game.
             """
             if start_game.lower() == "y" and type(f_res) == str:
-
+                dice = 6
                 print('Starting round {}'.format(self.count))
                 print('Rolling {} dice...'.format(dice))
                 rolling = roller(dice)
