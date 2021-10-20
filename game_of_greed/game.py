@@ -1,4 +1,5 @@
 from game_of_greed.game_logic import GameLogic, Banker
+from collections import Counter
 
 
 class Game:
@@ -8,6 +9,7 @@ class Game:
         self.bank = 0
         self.score = 0
         self.result = 0
+        self.redice = 0
         self.count_number = []
 
     def play(self, roller=None):
@@ -19,10 +21,11 @@ class Game:
         dice = 6
         print('Welcome to Game of Greed')
         print('(y)es to play or (n)o to decline')
+
         self.count += 1
         start_game = input('> ')
         start = True
-
+        f_res = 'no'
         if start_game.lower() == "n":
             print('OK. Maybe another time')
             start = False
@@ -31,34 +34,85 @@ class Game:
             """
              If the user choose to play he will continue by choosing from the promoted numbers. After he get the result he could continue by roll again or go to bank and check his balance or quit the game.
             """
-            if start_game.lower() == "y":
+            if start_game.lower() == "y" and type(f_res) == str:
 
-                print(f'Starting round {self.count}')
-                print(f'Rolling {dice} dice...')
+                print('Starting round {}'.format(self.count))
+                print('Rolling {} dice...'.format(dice))
                 rolling = roller(dice)
+                if GameLogic.calculate_score(tuple(rolling)) == 0:
+                    f_res = '1'
+                    print('****************************************')
+                    print('**        Zilch!!! Round over         **')
+                    print('****************************************')
+                    print(
+                        'You banked 0 points in round {}'.format(self.count))
+                    print('Total score is 0 points')
                 roll_numbers = ""
                 for num_dice in rolling:
                     roll_numbers = roll_numbers + str(num_dice) + " "
-                print(f'*** {roll_numbers}***')
+                print('*** {}***'.format(roll_numbers))
                 print('Enter dice to keep, or (q)uit:')
 
                 user_response = input('> ')
-            if user_response == 'q':
-                print(f'Thanks for playing. You earned {self.bank} points')
+            if user_response == 'q' or self.count == 100:
+                print('Thanks for playing. You earned {} points'.format(self.bank))
                 break
 
             elif user_response != 'b':
-                total = []
+
+                f_res = 1
                 credit = list(user_response)
-                for i in credit:
-                    total.append(int(i))
+                # for i in credit:
+                #     total.append(int(i))
+                total = [int(char) for char in credit if char.isdigit()]
                 self.score = GameLogic.calculate_score(tuple(total))
                 self.result = GameLogic.calculate_score(tuple(total))
-                new_dice = dice - len(credit)
-                self.count_number = credit
+                new_dice = dice - len(total)
+                self.count_number = total
+                # new_dice = dice-len(data)
+                # self.input_num = data
+                # roll = roller(dice)
+                if GameLogic.validate_keepers(tuple(rolling), tuple(total)) == False:
+                    print('Cheater!!! Or possibly made a typo...')
+                    rolling = roller(dice)
+                    if GameLogic.calculate_score(rolling) == 0:
+                        f_res = '1'
+                        print('****************************************')
+                        print('**        Zilch!!! Round over         **')
+                        print('****************************************')
+                        print('You banked 0 points in round {}'.format(self.count))
+                        print('Total score is 0 points')
+                        self.count += 1
+                        continue
 
+                    roll_numbers = ""
+                    for num in rolling:
+                        roll_numbers += str(num) + " "
+                    print("*** {}***".format(roll_numbers))
+                    print('Enter dice to keep, or (q)uit:')
+                    respone = input('> ')
+                    credit = list(respone)
+                    total = [int(char) for char in credit if char.isdigit()]
+                    self.score = GameLogic.calculate_score(tuple(total))
+                    self.result = GameLogic.calculate_score(tuple(total))
+                    new_dice = dice-len(total)
+                    self.input_num = total
+                if GameLogic.calculate_score(rolling) == 0:
+                    f_res = '1'
+                    print('****************************************')
+                    print('**        Zilch!!! Round over         **')
+                    print('****************************************')
+                    print('You banked 0 points in round {}'.format(self.count))
+                    print('Total score is 0 points')
+                    self.count += 1
+                    continue
+
+                data_count = Counter(total)
+                data_count_most = data_count.most_common()
+                if len(data_count_most) == 3 and list(data_count.values())[0] == 2:
+                    self.redice = 6
                 print(
-                    f'You have {self.result} unbanked points and {new_dice} dice remaining')
+                    'You have {} unbanked points and {} dice remaining'.format(self.result, new_dice))
                 print(f'(r)oll again, (b)ank your points or (q)uit:')
                 user_response = input('> ')
             """
@@ -67,23 +121,37 @@ class Game:
             if user_response == "b":
                 self.bank = self.bank + self.score
                 print(
-                    f'You banked {self.result} points in round {self.count}')
+                    'You banked {} points in round {}'.format(self.result, self.count))
                 self.count += 1
-                print(f'Total score is {self.bank} points')
+                print('Total score is {} points'.format(self.bank))
                 self.result = 0
+                f_res = "1"
             """
            If the user roll again he will continue to play with the game based on the game rules, so the number of dice will reduced based on what he choose in the previous round.
             """
             if user_response == "r":
                 dice = dice - len(credit)
-                print(f'Rolling {dice} dice...')
+                if self.redice == 6:
+                    dice = 6
+                print('Rolling {} dice...'.format(dice))
                 rolling = roller(dice)
                 roll_numbers = ""
                 for num_dice in rolling:
                     roll_numbers = roll_numbers + str(num_dice) + " "
                 print(f'*** {roll_numbers}***')
-                print('Enter dice to keep, or (q)uit:')
+                if GameLogic.calculate_score(rolling) == 0:
+                    f_res = '1'
+                    dice = 6
+                    print('****************************************')
+                    print('**        Zilch!!! Round over         **')
+                    print('****************************************')
+                    print('You banked 0 points in round {}'.format(self.count))
+                    print('Total score is 0 points')
+                    self.count += 1
+                    continue
 
+                print('Enter dice to keep, or (q)uit:')
+                f_res = 1
                 user_response = input('> ')
 
 
