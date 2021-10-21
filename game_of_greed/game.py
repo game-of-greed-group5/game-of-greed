@@ -35,7 +35,7 @@ class Game:
              If the user choose to play he will continue by choosing from the promoted numbers. After he get the result he could continue by roll again or go to bank and check his balance or quit the game.
             """
             if start_game.lower() == "y" and type(f_res) == str:
-
+                dice = 6
                 print('Starting round {}'.format(self.count))
                 print('Rolling {} dice...'.format(dice))
                 rolling = roller(dice)
@@ -62,16 +62,13 @@ class Game:
 
                 f_res = 1
                 credit = list(user_response)
-                # for i in credit:
-                #     total.append(int(i))
+             
                 total = [int(char) for char in credit if char.isdigit()]
                 self.score = GameLogic.calculate_score(tuple(total))
                 self.result = GameLogic.calculate_score(tuple(total))
                 new_dice = dice - len(total)
                 self.count_number = total
-                # new_dice = dice-len(data)
-                # self.input_num = data
-                # roll = roller(dice)
+              
                 if GameLogic.validate_keepers(tuple(rolling), tuple(total)) == False:
                     print('Cheater!!! Or possibly made a typo...')
                     rolling = roller(dice)
